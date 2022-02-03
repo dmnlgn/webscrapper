@@ -1,0 +1,40 @@
+.box {
+  display: grid;
+  justify-content: space-around;
+  &-table {
+    border-collapse: collapse;
+    min-width: 500px;
+    min-height: 500px;
+
+    thead > tr > td {
+      font-weight: bold;
+      background-color: rgb(209, 255, 2);
+      color: rgb(12, 12, 12);
+    }
+
+    td,
+    th {
+      border: 1px solid #d1d1d1;
+      padding: 0.5rem;
+    }
+    tr:nth-child(odd) {
+      background-color: #ececec;
+    }
+  }
+  &-page-numbers {
+    display: flex;
+    justify-content: space-between;
+    padding-inline-start: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 500px;
+    li {
+      cursor: pointer;
+      padding: 0.5em;
+      list-style: none;
+    }
+    &-active {
+      font-weight: bold;
+    }
+  }
+}
