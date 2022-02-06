@@ -1,33 +1,46 @@
 .box {
   display: grid;
   justify-content: space-around;
+  &-container {
+    width: 600px;
+  }
+
   &-table {
     border-collapse: collapse;
     min-width: 500px;
-    min-height: 500px;
+    table-layout: fixed;
+    width: 100%;
 
     thead > tr > td {
       font-weight: bold;
-      background-color: rgb(209, 255, 2);
-      color: rgb(12, 12, 12);
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    td {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     td,
     th {
-      border: 1px solid #d1d1d1;
       padding: 0.5rem;
     }
     tr:nth-child(odd) {
       background-color: #ececec;
     }
+
+    &-tbody > tr > td,
+    th {
+      padding: 0.1rem;
+      border: 1px solid #d1d1d1;
+    }
   }
   &-page-numbers {
+    padding-inline-start: 0;
     display: flex;
     justify-content: space-between;
-    padding-inline-start: 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-width: 500px;
     li {
       cursor: pointer;
       padding: 0.5em;
@@ -36,5 +49,13 @@
     &-active {
       font-weight: bold;
     }
+  }
+
+  &-page-numbers-inside {
+    padding-inline-start: 0;
+    max-width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
   }
 }
