@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MOCK_DATA from "../../../../MOCK_DATA.json";
 import ProductHeader from "../ProductHeader";
 import ProductList from "../ProductList";
+import ProductSearch from "../ProductSearch";
 
 import "./Box.less";
 
@@ -74,6 +75,12 @@ class Box extends Component {
     });
   };
 
+  getSearchData = (data) => {
+    this.setState({
+      sampleProduct: data,
+    });
+  };
+
   render() {
     const { currentPage, boxPerPage } = this.state;
     const sampleProduct = this.state.sampleProduct;
@@ -101,6 +108,10 @@ class Box extends Component {
     return (
       <div className="box">
         <div className="box-container">
+          <ProductSearch
+            data={this.state.sampleProduct}
+            getSearchData={this.getSearchData}
+          />
           <table className="box-table">
             <thead>
               <ProductHeader
