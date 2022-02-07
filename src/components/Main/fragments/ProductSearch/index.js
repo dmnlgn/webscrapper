@@ -17,7 +17,7 @@ class ProductSearch extends Component {
 
     if (value) {
       searchData = data.filter((el) => {
-        if (el.name.match(value)) {
+        if (el.name.toLowerCase().match(value.toLowerCase())) {
           return el.name;
         }
       });

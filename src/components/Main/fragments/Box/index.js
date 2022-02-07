@@ -68,16 +68,17 @@ class Box extends Component {
     }
   };
 
-  getSortedData = (data, pageNumber) => {
+  getSortedData = (data) => {
     this.setState({
       sampleProduct: data,
-      currentPage: pageNumber,
+      currentPage: 1,
     });
   };
 
   getSearchData = (data) => {
     this.setState({
       sampleProduct: data,
+      currentPage: 1,
     });
   };
 
