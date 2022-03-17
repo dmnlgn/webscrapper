@@ -1,0 +1,22 @@
+[
+    {
+        "name": "testPage",
+        "path": "/test",
+        "component": "ProductPage"
+    },
+    {
+        "name": "testPage1",
+        "path": "/test1",
+        "component": "ProductPage"
+    },
+    {
+        "name": "testPage2",
+        "path": "/test2",
+        "component": "ProductPage"
+    },
+    {
+        "name": "testPage3",
+        "path": "/test3",
+        "component": ""
+    }
+]

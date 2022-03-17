@@ -2,13 +2,13 @@ const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: "./src/index.html",
+  template: "./frontend/index.html",
   filename: "index.html",
   inject: "body",
 });
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./frontend/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index_bundle.js",
@@ -44,10 +44,13 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   resolve: {
     extensions: [".js", ".jsx"],
     alias: {
-      "@": path.resolve(__dirname, "./src/"),
+      "@": path.resolve(__dirname, "./frontend/"),
     },
   },
   plugins: [HtmlWebpackPluginConfig],

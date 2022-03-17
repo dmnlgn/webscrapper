@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MOCK_DATA from "../../../../MOCK_DATA.json";
+import Filter from "../Filters";
 import ProductHeader from "../ProductHeader";
 import ProductList from "../ProductList";
 import ProductSearch from "../ProductSearch";
@@ -61,9 +62,9 @@ class Box extends Component {
       .getElementsByClassName("box-page-numbers")[0]
       .getElementsByTagName("li");
 
-    elementLi[current].classList.add("box-page-numbers-active");
+    elementLi?.[current].classList.add("box-page-numbers-active");
 
-    if (elementLi[prev].classList.contains("box-page-numbers-active")) {
+    if (elementLi?.[prev].classList.contains("box-page-numbers-active")) {
       elementLi[prev].classList.remove("box-page-numbers-active");
     }
   };
@@ -76,6 +77,13 @@ class Box extends Component {
   };
 
   getSearchData = (data) => {
+    this.setState({
+      sampleProduct: data,
+      currentPage: 1,
+    });
+  };
+
+  getFilterData = (data) => {
     this.setState({
       sampleProduct: data,
       currentPage: 1,
@@ -109,6 +117,10 @@ class Box extends Component {
     return (
       <div className="box">
         <div className="box-container">
+          <Filter 
+          data={this.state.sampleProduct}
+          getFilterData={this.getFilterData}
+          />
           <ProductSearch
             data={this.state.sampleProduct}
             getSearchData={this.getSearchData}

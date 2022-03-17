@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { sortBy } from "lodash-es"
+
 import "./ProductHeader.less";
 
-const _ = require("lodash");
 
 class ProductHeader extends Component {
   constructor(props) {
@@ -77,15 +78,15 @@ class ProductHeader extends Component {
       .getElementsByTagName("button")[e.target.value];
 
     let sampleData = [];
-    if (elementLi.innerHTML === "ASC") {
-      sampleData = _.sortBy(this.props.data, (o) => {
+    if (elementLi?.innerHTML === "ASC") {
+      sampleData = sortBy(this.props.data, (o) => {
         return o[e.target.value];
       });
       this.props.getSortedData(sampleData, 1);
       return (elementLi.innerHTML = "DESC");
     }
-    if (elementLi.innerHTML === "DESC") {
-      sampleData = _.sortBy(this.props.data, (o) => {
+    if (elementLi?.innerHTML === "DESC") {
+      sampleData = sortBy(this.props.data, (o) => {
         return o[e.target.value];
       });
       sampleData.reverse();
@@ -98,12 +99,12 @@ class ProductHeader extends Component {
     return (
       <tr className="product-header">
         {this.state.sampleHeader.map((e, key) => (
-          <td className key={key}>
+          <td key={key}>
             <div className="product-header-td">
               <span>{e.title}</span>
               <button
                 className="product-header-button"
-                ref={(e) => (this.form = e)}
+               // ref={(e) => (this.form = e)}
                 id={e.type}
                 value={e.type}
                 onClick={(e) => this.sortCells(e)}>

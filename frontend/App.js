@@ -1,18 +1,21 @@
 import React from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Main from "./components/Main";
+
+import { Outlet } from "react-router-dom";
 
 import "./App.less";
 
-function App() {
+const App = (props) => {
   return (
     <div className="App">
-      <Header />
-      <Main />
+      <Header pages={props.pages} />
+      <div className="main-page">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
