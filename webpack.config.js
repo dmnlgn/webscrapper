@@ -10,8 +10,9 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 module.exports = {
   entry: "./frontend/index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "./dist"),
     filename: "index_bundle.js",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -46,6 +47,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
+    hot: true,
   },
   resolve: {
     extensions: [".js", ".jsx"],

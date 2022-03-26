@@ -6,8 +6,22 @@ class ProductSearch extends Component {
     super(props);
 
     this.state = {
-      productData: this.props?.data,
+      productData: this.props.data,
     };
+  }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     productData: this.props.data,
+  //   });
+  // }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.productData !== this.props.data) {
+      this.setState({
+        productData: this.props.data,
+      });
+    }
   }
 
   onKeyUp = (ev) => {

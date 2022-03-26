@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { sortBy } from "lodash-es"
+import { sortBy } from "lodash-es";
 
 import "./ProductHeader.less";
-
 
 class ProductHeader extends Component {
   constructor(props) {
@@ -14,58 +13,15 @@ class ProductHeader extends Component {
   }
 
   componentDidMount() {
-    const uniqueNames = this.getUniqueNames();
-
-    if (uniqueNames) {
-      this.getHeader(uniqueNames);
-    }
+    this.getStaticHeader();
   }
 
-  getUniqueNames = () => {
-    const uniqueNames = [
-      ...new Set(
-        [].concat(
-          ...this.props.data.map((e) => {
-            return Object.getOwnPropertyNames(e);
-          }),
-        ),
-      ),
+  getStaticHeader = () => {
+    const headerUnique = [
+      { title: "NAZWA", type: "name" },
+      { title: "CENA", type: "price" },
+      { title: "ADRES", type: "href" },
     ];
-
-    return uniqueNames;
-  };
-
-  getHeader = (uniqueNames) => {
-    let headerUnique = [];
-    uniqueNames.map((e) => {
-      if (e === "name") {
-        headerUnique = [
-          ...headerUnique,
-          {
-            title: "NAZWA",
-            type: e,
-          },
-        ];
-      }
-      if (e === "price") {
-        headerUnique = [
-          ...headerUnique,
-          {
-            title: "CENA",
-            type: e,
-          },
-        ];
-      }
-      if (e === "href") {
-        headerUnique = [
-          ...headerUnique,
-          {
-            title: "ADRES",
-            type: e,
-          },
-        ];
-      }
-    });
 
     this.setState({
       sampleHeader: headerUnique,
@@ -104,7 +60,7 @@ class ProductHeader extends Component {
               <span>{e.title}</span>
               <button
                 className="product-header-button"
-               // ref={(e) => (this.form = e)}
+                // ref={(e) => (this.form = e)}
                 id={e.type}
                 value={e.type}
                 onClick={(e) => this.sortCells(e)}>

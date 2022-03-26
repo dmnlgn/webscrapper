@@ -6,7 +6,7 @@ class ProductList extends Component {
   }
   state = {};
   render() {
-    return this.props.data.map((e, key) => {
+    return this.props.data?.map((e, key) => {
       return (
         <tr key={key}>
           <td>{e.name}</td>

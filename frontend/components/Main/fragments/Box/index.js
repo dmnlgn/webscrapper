@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import MOCK_DATA from "../../../../MOCK_DATA.json";
 import Filter from "../Filters";
 import ProductHeader from "../ProductHeader";
 import ProductList from "../ProductList";
 import ProductSearch from "../ProductSearch";
 
 import "./Box.less";
+import { getScrapes } from "../../../../scripts/fetchData";
 
 class Box extends Component {
   constructor(props) {
@@ -14,7 +14,9 @@ class Box extends Component {
     this.state = {
       currentPage: 1,
       boxPerPage: 20,
-      sampleProduct: MOCK_DATA,
+      sampleProduct: [],
+      newData: [],
+      webAPI: "",
     };
 
     this.renderHandleClick = this.renderHandleClick.bind(this);
@@ -22,6 +24,10 @@ class Box extends Component {
   }
 
   componentDidMount() {
+    if (this.props.api) {
+      this.getData();
+    }
+
     const elementLi = document
       .getElementsByClassName("box-page-numbers")[0]
       .getElementsByTagName("li")[this.state.currentPage];
@@ -33,7 +39,19 @@ class Box extends Component {
     if (prevState.currentPage !== this.state.currentPage) {
       this.changeAttribLi(prevState.currentPage, this.state.currentPage);
     }
+
+    if (prevProps.api !== this.props.api) {
+      if (this.props.api) {
+        this.getData();
+      }
+    }
   }
+
+  getData = async () => {
+    await getScrapes(this.props.api, (fetchData) => {
+      this.setState({ sampleProduct: fetchData.data, newData: fetchData.data });
+    });
+  };
 
   renderHandleClick(event) {
     this.setState({
@@ -71,38 +89,34 @@ class Box extends Component {
 
   getSortedData = (data) => {
     this.setState({
-      sampleProduct: data,
+      newData: data,
       currentPage: 1,
     });
   };
 
   getSearchData = (data) => {
     this.setState({
-      sampleProduct: data,
+      newData: data,
       currentPage: 1,
     });
   };
 
   getFilterData = (data) => {
     this.setState({
-      sampleProduct: data,
+      newData: data,
       currentPage: 1,
     });
   };
 
   render() {
-    const { currentPage, boxPerPage } = this.state;
-    const sampleProduct = this.state.sampleProduct;
+    const { currentPage, boxPerPage, sampleProduct, newData } = this.state;
 
     const indexOfLastTodo = currentPage * boxPerPage;
     const indexOfFirstTodo = indexOfLastTodo - boxPerPage;
-    const renderSampleData = sampleProduct.slice(
-      indexOfFirstTodo,
-      indexOfLastTodo,
-    );
+    const renderSampleData = newData?.slice(indexOfFirstTodo, indexOfLastTodo);
 
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(sampleProduct.length / boxPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(newData?.length / boxPerPage); i++) {
       pageNumbers.push(i);
     }
 
@@ -117,19 +131,24 @@ class Box extends Component {
     return (
       <div className="box">
         <div className="box-container">
-          <Filter 
-          data={this.state.sampleProduct}
-          getFilterData={this.getFilterData}
+          <Filter
+            pageName={this.props.name}
+            data={this.state.sampleProduct}
+            getFilterData={this.getFilterData}
+            subpages={this.props.subpages}
+            pages={this.props.pages}
+            location={this.props.path}
+            currentPage={this.props}
           />
           <ProductSearch
-            data={this.state.sampleProduct}
+            data={sampleProduct}
             getSearchData={this.getSearchData}
           />
           <table className="box-table">
             <thead>
               <ProductHeader
                 dataHeader={this.state.sampleHeader}
-                data={this.state.sampleProduct}
+                data={sampleProduct}
                 getSortedData={this.getSortedData}
                 pageNumber={currentPage}
               />

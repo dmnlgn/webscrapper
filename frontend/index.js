@@ -1,8 +1,5 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import App from "./App.js";
-
-//ReactDOM.render(<App />, document.getElementById("root"));
 
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -13,24 +10,38 @@ import Error from "./pages/test/Error.js";
 
 import * as pages from "./pages/pages.json";
 
-const componentTypes = (type) => {
-  const pages = {
-    ProductPage: () => <ProductPage />,
+const componentTypes = (type, props) => {
+  const pagesType = {
+    ProductPage: () => (
+      <ProductPage api={props.webAPI} pages={pages} {...props} />
+    ),
     default: () => <Error />,
   };
-  return pages[type]?.() ?? pages["default"]();
+  return pagesType[type]?.() ?? pagesType["default"]();
 };
 
-const renderPages = (pagesList) =>
-  pagesList?.map((page, index) => {
-    return (
-      <Route
-        key={index}
-        path={page.path}
-        element={componentTypes(page.component)}
-      />
-    );
+const renderPages = (pagesList) => {
+  const flattenPagesList = flatPages(pagesList);
+  return flattenPagesList.map((page, index) => (
+    <Route
+      key={index}
+      path={page.path}
+      element={componentTypes(page.component, page)}
+    />
+  ));
+};
+
+const flatPages = (pagesList) => {
+  let list = [];
+
+  pagesList.forEach((page) => {
+    list.push(page);
+    if (Array.isArray(page.subpages)) {
+      list = [...list, ...flatPages(page.subpages)];
+    }
   });
+  return list;
+};
 
 render(
   <BrowserRouter>

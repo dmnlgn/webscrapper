@@ -4,7 +4,10 @@
   width: 100%;
 
   &-list {
-    border: 1px solid #d1d1d1;
+    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
+
     &-header {
       background-color: #000;
       padding: 0.3em;
@@ -12,6 +15,7 @@
       font-weight: bold;
     }
     &-main {
+      border: 1px solid #d3cfcf;
       &-content {
         display: flex;
         justify-content: space-between;
