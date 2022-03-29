@@ -55,7 +55,7 @@ class ProductHeader extends Component {
     return (
       <tr className="product-header">
         {this.state.sampleHeader.map((e, key) => (
-          <td key={key}>
+          <>
             <div className="product-header-td">
               <span>{e.title}</span>
               <button
@@ -67,7 +67,7 @@ class ProductHeader extends Component {
                 ASC
               </button>
             </div>
-          </td>
+          </>
         ))}
       </tr>
     );
