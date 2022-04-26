@@ -9,7 +9,7 @@ import "./App.less";
 const App = (props) => {
   return (
     <div className="App">
-      <Header pages={props.pages} />
+      <Header pages={props.pages} {...props} />
       <div className="main-page">
         <Outlet />
       </div>

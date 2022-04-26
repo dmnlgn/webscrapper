@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import "./ProductCategory.less";
 
 class ProductCategory extends Component {
-  renderSubPages = (pages) => {
-    if (pages.subpages) {
-      return pages?.subpages.map((e, i) => (
+  renderSubPages = (subpages) => {
+    if (subpages) {
+      return subpages?.map((e, i) => (
         <Link key={i} to={e?.path ?? "/"}>
           {"> "}
           {e?.name}
@@ -16,7 +16,7 @@ class ProductCategory extends Component {
   };
 
   render() {
-    const subPages = this.renderSubPages(this.props.currentPage);
+    const subPages = this.renderSubPages(this.props.subpages);
 
     return (
       <div className="product-category">

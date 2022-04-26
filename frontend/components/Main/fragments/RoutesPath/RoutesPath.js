@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./RoutesPath.less";
 
-class RoutesPath extends Component {
-  renderFullPath = () => {
+const RoutesPath = (props) => {
+  const renderFullPath = () => {
     const pathname = window.location.pathname;
     const slashRegex = /(\w+)/gi;
     const fullPath = pathname.match(slashRegex);
@@ -34,13 +34,7 @@ class RoutesPath extends Component {
     }
   };
 
-  render() {
-    return (
-      <div className="routes-path">
-        {this.renderFullPath()}
-      </div>
-    );
-  }
-}
+  return <div className="routes-path">{renderFullPath()}</div>;
+};
 
 export default RoutesPath;

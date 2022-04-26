@@ -62,7 +62,7 @@
                                 "webAPI": "/mockData2",
                                 "subpages": [
                                     {
-                                        "name": "CHUJ",
+                                        "name": "test",
                                         "path": "/test4/sub2/sub3/sub1/sub2",
                                         "component": "ProductPage",
                                         "webAPI": "/mockData2"

@@ -1,8 +1,7 @@
 .box {
-  display: flex;
-  justify-content: center;
+  display: grid;
   margin: 0 auto;
-  width: 90%;
+  width: 80%;
 
   &-container {
     display: grid;
@@ -15,12 +14,12 @@
   }
 
   &-table {
-    // border-collapse: collapse;
+    border-collapse: collapse;
     min-width: 500px;
     table-layout: fixed;
     width: 100%;
     grid-area: main;
-    //display: grid;
+    display: grid;
 
     .product-header {
       display: flex;
@@ -31,8 +30,12 @@
         flex-direction: row;
       }
     }
-    
-    thead > tr > td {
+
+    thead {
+      display: flex;
+    }
+
+    thead > tr > div {
       font-weight: bold;
       background-color: #002fff;
       color: #ffffff;
@@ -58,29 +61,24 @@
       border: 1px solid #d1d1d1;
     }
   }
-  &-page-numbers {
-    padding-inline-start: 0;
-    display: flex;
-    justify-content: space-between;
-    li {
-      cursor: pointer;
-      padding: 0.5em;
-      list-style: none;
-    }
-    &-active {
-      font-weight: bold;
+}
+
+@media only screen and (max-width: 800px) {
+  .box {
+    &-container {
+      grid-gap: 0;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "head"
+        "nav"
+        "main"
+        "footer";
     }
   }
+}
 
-  &-page-numbers-inside {
-    padding-inline-start: 0;
-    max-width: 400px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
-
-  &-pagination {
-    grid-area: footer;
+@media (max-width: 320px) {
+  .box {
+    width: 100%;
   }
 }

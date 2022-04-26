@@ -1,0 +1,27 @@
+.box {
+    &-page-numbers {
+        padding-inline-start: 0;
+        display: flex;
+        justify-content: space-between;
+        li {
+        cursor: pointer;
+        padding: 0.5em;
+        list-style: none;
+        }
+        &-active {
+        font-weight: bold;
+        }
+    } 
+
+    &-page-numbers-inside {
+        padding-inline-start: 0;
+        max-width: 400px;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    &-pagination {
+        grid-area: footer;
+    }
+}

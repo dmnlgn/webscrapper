@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ProductHeader from "../../ProductHeader";
-import ProductList from "../../ProductList";
+import ProductList from "../../Product/Product";
 
 class Table extends Component {
   render() {
@@ -12,6 +12,7 @@ class Table extends Component {
             data={this.props.fetchData}
             getSortedData={this.props.getSortedData}
             pageNumber={this.props.currentPage}
+            api={this.props.api}
           />
         </thead>
         <tbody className={"box-table-tbody"}>
