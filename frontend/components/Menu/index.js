@@ -21,11 +21,6 @@ const Menu = (props) => {
   return (
     <div className="menu">
       <nav className="menu-nav">
-        {/* <NavLink
-          className={({ isActive }) => (isActive ? "active" : "inactive")}
-          to="/">
-          Home
-        </NavLink> */}
         {menuList(props.pages)}
       </nav>
     </div>

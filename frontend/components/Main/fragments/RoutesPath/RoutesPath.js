@@ -1,9 +1,23 @@
-import React, { Component } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import "./RoutesPath.less";
 
 const RoutesPath = (props) => {
+  const findPage = (pages, element) => {
+    for (let node of pages) {
+      if (node.path.includes(element)) {
+        return node;
+      }
+      if (node.subpages) {
+        let desiredNode = findPage(node.subpages, element);
+        if (desiredNode) {
+          return desiredNode;
+        }
+      }
+    }
+  };
+
   const renderFullPath = () => {
     const pathname = window.location.pathname;
     const slashRegex = /(\w+)/gi;
@@ -11,7 +25,7 @@ const RoutesPath = (props) => {
 
     if (fullPath.length > 0) {
       const lastIndex = fullPath.length - 1;
-      const array = [];
+      let array = [];
       let newpath = "";
 
       return fullPath.map((el, i) => {
@@ -22,10 +36,13 @@ const RoutesPath = (props) => {
           newpath = el;
         }
 
+        const currentPage = findPage(props.pages, newpath);
+
         return (
           <div className="routes-list" key={i}>
             <Link key={i} to={`/${newpath}`}>
-              {el}
+              {/* {el} */}
+              {currentPage?.name}
             </Link>
             {!(lastIndex === i) && " > "}
           </div>

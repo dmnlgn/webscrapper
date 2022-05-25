@@ -4,31 +4,46 @@ import FilterPrice from "./FilterTypes/FilterPrice";
 import "./Filter.less";
 import ProductCategory from "../ProductCategory/ProductCategory";
 import RoutesPath from "../RoutesPath/RoutesPath";
+import Sort from "../ProductHeader/elements/Sort/Sort";
 
-class Filter extends Component {
-  render() {
-    return (
-      <div className="filter-box">
-        <div className="filter-box-list">
-          <RoutesPath
-            pages={this.props.pages}
-            currentPage={this.props.currentPage}
-          />
-          <ProductCategory
-            subpages={this.props.subpages}
-            pages={this.props.pages}
-            pageName={this.props.pageName}
-            location={this.props.location}
-            currentPage={this.props.currentPage}
-          />
-          <FilterPrice
-            data={this.props.data}
-            getFilterData={this.props.getFilterData}
-          />
-        </div>
+import { filterType } from "./constans/filterType";
+
+const Filter = (props) => {
+  const filters = props.filters;
+
+  return (
+    <div className="filter-box">
+      <div className="filter-box-list">
+        {/* <RoutesPath
+          pages={props.pages}
+          subpages={props.subpages}
+          currentPage={props.currentPage}
+          name={props.name}
+          path={props.path}
+        /> */}
+        <ProductCategory
+          subpages={props.subpages}
+          pages={props.pages}
+          pageName={props.pageName}
+          location={props.location}
+          currentPage={props.currentPage}
+        />
+        {/* <FilterPrice data={props.data} getFilterData={props.getFilterData} /> */}
+        {filters?.map((filter, index) => {
+          //return filterType(props)[filter];
+
+          const FilterBox = filterType(props)[filter];
+
+          return (
+            <div className="filter-price" key={index}>
+              <div className="filter-box-list-header">{FilterBox.title}</div>
+              <div className="filter-box-list-main">{FilterBox.component}</div>
+            </div>
+          );
+        })}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Filter;

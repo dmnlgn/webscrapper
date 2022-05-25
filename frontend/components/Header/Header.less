@@ -1,11 +1,28 @@
+@import "../../style/global.less";
+
 .header {
-  text-align: center;
-  padding: 20px;
-  .header-logo {
-    a {
-      font-size: 2em;
-      color: #000;
-      text-decoration: none;
+  background-color: @main_color;
+  border-bottom: 1px solid #cfcbcb;
+  .header-box {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-left {
+      grid-gap: 10px;
+      padding: 10px 0;
+      display: flex;
+      .header-logo {
+        a {
+          font-weight: bold;
+          font-size: 2em;
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    }
+    &-right {
+      height: 100%;
     }
   }
 }

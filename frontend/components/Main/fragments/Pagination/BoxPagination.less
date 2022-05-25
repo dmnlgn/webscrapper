@@ -1,27 +1,43 @@
+@import "../../../../style/global.less";
+
 .box {
-    &-page-numbers {
-        padding-inline-start: 0;
-        display: flex;
-        justify-content: space-between;
-        li {
-        cursor: pointer;
-        padding: 0.5em;
-        list-style: none;
-        }
-        &-active {
-        font-weight: bold;
-        }
-    } 
-
-    &-page-numbers-inside {
-        padding-inline-start: 0;
-        max-width: 400px;
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
+  &-page-numbers {
+    padding-inline-start: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: baseline;
+    li {
+      cursor: pointer;
+      padding: 0.5em;
+      list-style: none;
     }
-
-    &-pagination {
-        grid-area: footer;
+    &-active {
+      font-weight: bold;
     }
+  }
+
+  &-page-numbers-inside {
+    padding-inline-start: 0;
+    max-width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  &-pagination {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+
+    &-box {
+      grid-gap: 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      input {
+        height: 100%;
+      }
+    }
+  }
 }

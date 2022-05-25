@@ -24,11 +24,11 @@ const ProductBox = (props) => {
 
   return (
     <div className="product-box-main">
-      <ProductHeader
+      {/* <ProductHeader
         api={props.api}
         data={props.data}
         getRenderData={getRenderData}
-      />
+      /> */}
       <Pagination
         {...props}
         getPaginateData={getPaginateData}

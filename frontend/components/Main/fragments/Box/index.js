@@ -3,13 +3,12 @@ import React, { Component, useEffect, useState } from "react";
 import { getScrapes } from "../../../../scripts/fetchData";
 
 import Pagination from "../Pagination/Pagination";
-import Table from "./Table/Table";
 import Filter from "../Filters";
 import ProductSearch from "../ProductSearch";
 
 import "./Box.less";
-import ReactTable from "./Table/ReactTable";
 import ProductBox from "../ProductBox/ProductBox";
+import RoutesPath from "../RoutesPath/RoutesPath";
 
 const Box = (props) => {
   const [fetchData, setFetchData] = useState([]);
@@ -24,25 +23,41 @@ const Box = (props) => {
     });
   };
 
+  const getRenderData = (data) => {
+    setFetchData(data);
+  };
+
   return (
-    <div className="box">
-      <div className="box-container">
-        <Filter
-          pageName={props.name}
-          data={fetchData}
-          //getFilterData={this.getFilterData}
-          subpages={props.subpages}
-          pages={props.pages}
-          location={props.path}
-       //currentPage={props}
-          {...props}
-        />
-        <ProductSearch
-          data={fetchData}
-        />
-        <ProductBox data={fetchData} {...props} />
+    <>
+      <div className="box-routes">
+        <div className="box-routes-wrapper wrapper">
+          <RoutesPath
+            pages={props.pages}
+            subpages={props.subpages}
+            currentPage={props.currentPage}
+            name={props.name}
+            path={props.path}
+          />
+        </div>
       </div>
-    </div>
+      <div className="box wrapper">
+        <div className="box-container">
+          <Filter
+            pageName={props.name}
+            data={fetchData}
+            subpages={props.subpages}
+            pages={props.pages}
+            location={props.path}
+            name={props.name}
+            getRenderData={getRenderData}
+            getData={getData}
+            {...props}
+          />
+          {/* <ProductSearch data={fetchData} /> */}
+          <ProductBox data={fetchData} {...props} />
+        </div>
+      </div>
+    </>
   );
 };
 //}

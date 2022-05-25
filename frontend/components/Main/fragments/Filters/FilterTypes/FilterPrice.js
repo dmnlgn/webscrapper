@@ -14,13 +14,13 @@ class FilterPrice extends Component {
 
   handleChangefirstVal = (ev) => {
     this.setState({
-      firstVal: ev.target.value,
+      firstVal: +ev.target.value,
     });
   };
 
   handleChangesecondVal = (ev) => {
     this.setState({
-      secondVal: ev.target.value,
+      secondVal: +ev.target.value,
     });
   };
 

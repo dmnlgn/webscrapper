@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Sort from "../ProductHeader/elements/Sort/Sort";
 import "./BoxPagination.less";
 
 const Pagination = (props) => {
@@ -16,7 +17,7 @@ const Pagination = (props) => {
     setCurrentPage(Number(event.target.id));
   };
 
-    useEffect(() => {
+  useEffect(() => {
     if (renderFetchedData) {
       props.getPaginateData(renderFetchedData);
     }
@@ -70,9 +71,10 @@ const Pagination = (props) => {
           onClick={renderHandlePrevNext}>
           {"< PREV"}
         </li>
-        {/* <ul className="box-page-numbers-inside">{renderPageNumbers} </ul> */}
-        <input value={currentPage} onChange={handleChange}></input>
-        <p>z {pageNumbers.length}</p>
+        <div className="box-pagination-box">
+          <input value={currentPage} onChange={handleChange}></input>
+          <p>z {pageNumbers.length}</p>
+        </div>
         <li
           id={"next"}
           limit={pageNumbers?.length}
