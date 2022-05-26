@@ -19,8 +19,8 @@ const ProductBox = (props) => {
   };
 
   const getPaginateData = (data) => {
-    setPagianteData(data)
-  }
+    setPagianteData(data);
+  };
 
   return (
     <div className="product-box-main">
@@ -29,12 +29,13 @@ const ProductBox = (props) => {
         data={props.data}
         getRenderData={getRenderData}
       /> */}
+
+      <Product data={paginateData} />
       <Pagination
         {...props}
         getPaginateData={getPaginateData}
         fetchData={fetchData}
       />
-      <Product data={paginateData} />
     </div>
   );
 };

@@ -103,7 +103,7 @@ class Pagination extends Component {
 
     return (
       <div className="box-pagination">
-        <ul className="box-page-numbers">
+        <ul className="box-pagination-page-numbers">
           <li
             id={"prev"}
             limit={pageNumbers?.length}

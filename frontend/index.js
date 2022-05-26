@@ -11,6 +11,10 @@ import Error from "./pages/test/Error.js";
 import * as pages from "./pages/pages.json";
 import * as testpage from "./pages/testpage.json";
 
+import { Provider } from "react-redux";
+
+import store from "./redux/store";
+
 const componentTypes = (type, props) => {
   const pagesType = {
     ProductPage: () => (
@@ -59,10 +63,14 @@ const flatPages = (pagesList, pagePath) => {
 };
 
 render(
-  <BrowserRouter>
-    <Routes>
-      <Route element={<App pages={testpage} />}>{renderPages(testpage)}</Route>
-    </Routes>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<App pages={testpage} />}>
+          {renderPages(testpage)}
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root"),
 );

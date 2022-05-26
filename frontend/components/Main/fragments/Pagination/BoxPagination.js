@@ -38,7 +38,7 @@ const Pagination = (props) => {
   };
 
   const pageNumbers = [];
-  for (let i = 0; i <= Math.ceil(fetchData?.length / boxPerPage); i++) {
+  for (let i = 0; i < Math.ceil(fetchData?.length / boxPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -64,7 +64,7 @@ const Pagination = (props) => {
 
   return (
     <div className="box-pagination">
-      <ul className="box-page-numbers">
+      <ul className="box-pagination-page-numbers">
         <li
           id={"prev"}
           limit={pageNumbers?.length}

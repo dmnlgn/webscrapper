@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { sortBy } from "lodash";
 
+import "./Sort.less";
+
 const Sort = (props) => {
   const defaultValue = "Choose From List";
   const options = [
@@ -16,9 +18,9 @@ const Sort = (props) => {
     setSortValue(defaultValue);
   }, [props.api]);
 
-  const onChange = (event) => {
-    setSortValue(event.target.value);
-    sortData(event.target.value);
+  const onClick = (event) => {
+    setSortValue(event);
+    sortData(event);
   };
 
   const sortData = (type) => {
@@ -29,7 +31,7 @@ const Sort = (props) => {
 
   return (
     <>
-      <select onChange={(e) => onChange(e)} value={sortValue}>
+      {/* <select onChange={(e) => onChange(e)} value={sortValue}>
         <option defaultValue disabled hidden>
           {sortValue}
         </option>
@@ -38,7 +40,15 @@ const Sort = (props) => {
             {e.name}
           </option>
         ))}
-      </select>
+      </select> */}
+      <div className="product-sort">
+        {options.map((e, i) => (
+          <div key={i} value={e.value} onClick={() => onClick(e.value)}>
+            {"> "}
+            {e.name}
+          </div>
+        ))}
+      </div>
     </>
   );
 };

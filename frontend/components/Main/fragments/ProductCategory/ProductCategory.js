@@ -21,12 +21,12 @@ class ProductCategory extends Component {
     return (
       <div className="product-category">
         {subPages && (
-          <>
+          <div className="product-category-box">
             <div className="product-category-header">KATEGORIE</div>
             <div className="product-category-main">
               <form className="product-category-main-content">{subPages}</form>
             </div>
-          </>
+          </div>
         )}
       </div>
     );

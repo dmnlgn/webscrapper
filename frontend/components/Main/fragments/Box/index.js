@@ -9,19 +9,28 @@ import ProductSearch from "../ProductSearch";
 import "./Box.less";
 import ProductBox from "../ProductBox/ProductBox";
 import RoutesPath from "../RoutesPath/RoutesPath";
+import { connect, useDispatch } from "react-redux";
+
+import { currentApi } from "../../../../redux/actions/actionGetApi";
+import { getData } from "../../../../redux/actions/actionGetData";
 
 const Box = (props) => {
   const [fetchData, setFetchData] = useState([]);
 
-  useEffect(() => {
-    getData();
-  }, [props.api]);
+  const dispatch = useDispatch();
 
-  const getData = async () => {
-    await getScrapes(props.api, (fetchData) => {
-      setFetchData(fetchData.data);
-    });
-  };
+  useEffect(() => {
+    dispatch(currentApi(props.api));
+    setProducts()
+  }, [props.api, props.path]);
+
+  useEffect(() => {
+    setFetchData(props.dataTest);
+  }, [!!props.query, props.isFetching === false]);
+
+  const setProducts = () => {
+    dispatch(getData(props.api)).then(() => setFetchData(props.dataTest));
+  }
 
   const getRenderData = (data) => {
     setFetchData(data);
@@ -50,16 +59,29 @@ const Box = (props) => {
             location={props.path}
             name={props.name}
             getRenderData={getRenderData}
-            getData={getData}
+            getData={setProducts}
             {...props}
           />
-          {/* <ProductSearch data={fetchData} /> */}
           <ProductBox data={fetchData} {...props} />
         </div>
       </div>
     </>
   );
 };
-//}
 
-export default Box;
+const mapStateToProps = (state) => {
+  const currentApi = state.currentApi.stateApi;
+  const { dataTest, isFetching, query, error } = state.getData;
+
+  return {
+    dataTest,
+    isFetching,
+    query,
+    error,
+    currentApi,
+  };
+};
+
+export default connect(mapStateToProps, null)(Box);
+
+// export default Box;
