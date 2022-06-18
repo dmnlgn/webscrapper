@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Home",
+    "path": "/",
+    "component": "HomePage"
+  },
+  {
+    "path": "*",
+    "component": "Error"
+  },
+  {
+    "name": "Shops",
+    "path": "/shops",
+    "component": "CategoryPage",
+    "subpages": [
+      {
+        "name": "Reserved",
+        "path": "/reserved",
+        "component": "CategoryPage",
+        "subpages": [
+          {
+            "name": "Tshirt",
+            "path": "/tshirt",
+            "component": "ProductPage",
+            "webAPI": "/reserved/tshirt",
+            "filters": [
+              "Price"
+            ]
+          },
+          {
+            "name": "Jeans",
+            "path": "/jeans",
+            "component": "ProductPage",
+            "webAPI": "/reserved/jeans",
+            "filters": [
+              "Price"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Medicine",
+        "path": "/medicine",
+        "component": "ProductPage",
+        "webAPI": "/medicine/all",
+        "subpages": [
+          {
+            "name": "Tshirt",
+            "path": "/tshirt",
+            "component": "ProductPage",
+            "webAPI": "/medicine/tshirt",
+            "filters": [
+              "Price"
+            ]
+          },
+          {
+            "name": "Jeans",
+            "path": "/jeans",
+            "component": "ProductPage",
+            "webAPI": "/medicine/jeans",
+            "filters": [
+              "Price"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "HM",
+        "path": "/reserved3",
+        "component": "CategoryPage",
+        "subpages": [
+          {
+            "name": "Tshirt",
+            "path": "/tshirt3",
+            "component": "ProductPage",
+            "webAPI": "/reserved/tshirt",
+            "filters": [
+              "Price"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Panel",
+    "path": "/panel",
+    "component": "Status"
+  }
+]

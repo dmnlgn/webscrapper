@@ -1,7 +1,7 @@
 import { GET_API } from "../actions/actionTypes";
 
 const initalState = {
-  stateApi: "",
+  stateApi: null,
 };
 
 export const currentApi = (state = initalState, action) => {

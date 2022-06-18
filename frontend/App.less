@@ -1,11 +1,40 @@
 @import "./style/global.less";
+@font-face {
+  font-family: "Teletext";
+  src: url("./style/font/EuropeanTeletext.ttf");
+}
+@font-face {
+  font-family: "Pixellari";
+  src: url("./style/font/Pixellari.ttf");
+}
+@font-face {
+  font-family: "000webfont";
+  src: url("./style/font/000webfont.ttf");
+}
 
 body {
   padding: 0;
   margin: 0;
-  font-family: "Consolas", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
-    Arial, sans-serif;
+  font-family: "Pixellari", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   background-color: #f3f3f3;
+  font-size: 20px;
+}
+
+select,
+button,
+input {
+  font-family: "Pixellari", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+input:focus,
+select:focus,
+.form-control:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .App {

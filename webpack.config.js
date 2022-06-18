@@ -1,4 +1,5 @@
 const path = require("path");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: "./frontend/index.js",
@@ -49,5 +50,9 @@ module.exports = {
       "@": path.resolve(__dirname, "./frontend/"),
     },
   },
-  plugins: [],
+  plugins: [
+    new Dotenv({
+      path: "./config.env",
+    }),
+  ],
 };

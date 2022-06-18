@@ -2,7 +2,7 @@
 
 .header {
   background-color: @main_color;
-  border-bottom: 1px solid #cfcbcb;
+  border-bottom: 5px solid #000000;
   .header-box {
     text-align: center;
     display: flex;
@@ -14,15 +14,47 @@
       display: flex;
       .header-logo {
         a {
+          font-family: "Teletext";
           font-weight: bold;
-          font-size: 2em;
-          color: #000;
+          font-size: 1.5em;
+          color: #fff;
           text-decoration: none;
+          text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
         }
       }
     }
     &-right {
       height: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .header {
+    background-color: @main_color;
+    border-bottom: 5px solid #000000;
+    .header-box {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      &-right {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    background-color: @main_color;
+    border-bottom: 5px solid #000000;
+    .header-box {
+      display: flex;
+      margin-bottom: 10px;
+      &-left {
+        width: 100%;
+        flex-direction: column;
+      }
     }
   }
 }

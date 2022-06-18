@@ -1,0 +1,19 @@
+.product-box-main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+  grid-row: 2;
+  grid-gap: 0.5em;
+}
+
+@media only screen and (max-width: 800px) {
+  .product {
+    &-box {
+      &-main {
+        grid-column: span 3;
+        grid-row: 3;
+      }
+    }
+  }
+}

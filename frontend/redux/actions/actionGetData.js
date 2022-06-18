@@ -23,9 +23,16 @@ export const getData = (API, query) => {
     })
       .then((response) => {
         let data = response.data;
+
+        let items = [];
+
+        data.forEach((e) => {
+          items = [...items, ...e.collection];
+        });
+
         if (query) {
-          data =
-            data.filter((e) => {
+          items =
+            items.filter((e) => {
               if (e.name.toLowerCase().includes(query)) {
                 return true;
               }
@@ -35,7 +42,7 @@ export const getData = (API, query) => {
         dispatch(
           receiveData({
             status: "success",
-            payload: data,
+            payload: items,
           }),
         );
 

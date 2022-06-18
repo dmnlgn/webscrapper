@@ -1,6 +1,10 @@
 import React from "react";
+
+import { Link } from "react-router-dom";
+
 import Menu from "../Menu";
 import Search from "./Search/Search";
+
 import "./Header.less";
 
 const Header = (props) => {
@@ -9,7 +13,9 @@ const Header = (props) => {
       <div className="header-box wrapper">
         <div className="header-box-left">
           <div className="header-logo">
-            <a className="header-logo">webscrapper</a>
+            <Link to={"/"} className="header-logo">
+              scrapper
+            </Link>
           </div>
           <Menu pages={props.pages} />
         </div>

@@ -1,0 +1,26 @@
+@import "../../style/global.less";
+
+.categoryPage {
+  display: grid;
+  flex-direction: column;
+  grid-gap: 0.5em;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-between;
+  margin-top: 0.5em;
+  &-shop {
+    display: flex;
+    justify-content: space-around;
+    a {
+      border: @main_border;
+      height: 100px;
+      display: grid;
+      align-items: center;
+      width: 100%;
+      background-color: #e7dff1;
+      justify-items: center;
+      color: #000000;
+      text-decoration: none;
+      font-size: 2em;
+    }
+  }
+}

@@ -1,15 +1,19 @@
-var createError = require("http-errors");
-var express = require("express");
-var cors = require("cors");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var mockDataRouter = require("./routes/mockdata");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
 
-var app = express();
+const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST || "127.0.0.1";
+
+const indexRouter = require("./routes/index");
+const dbo = require("./database/connect");
+const app = express();
 
 app.use(cors());
 app.use((req, res, next) => {
@@ -33,8 +37,16 @@ app.use(
 );
 
 app.use("/", indexRouter);
-app.use("/mockData", usersRouter);
-app.use("/mockData2", mockDataRouter);
+
+app.use(require("./database/controll"));
+app.use(require("./scrapper/reserved/scrappTshirt"));
+app.use(require("./scrapper/reserved/scrappJeans"));
+
+app.use(require("./scrapper/medicine/scrappTshirt"));
+app.use(require("./scrapper/medicine/scrappJeans"));
+app.use(require("./scrapper/medicine/scrappAll"));
+
+app.use(require("./scrapper/hm/scrappTshirt"));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -50,6 +62,14 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+});
+
+app.listen(PORT, HOST, () => {
+  // perform a database connection when server starts
+  dbo.connectToServer(function (err) {
+    if (err) console.error(err);
+  });
+  console.log(`Server is running on port: ${PORT}`);
 });
 
 module.exports = app;

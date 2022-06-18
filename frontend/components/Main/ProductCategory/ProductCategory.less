@@ -1,0 +1,43 @@
+@import "../../../style/global.less";
+
+.product-category {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-category {
+  min-width: 120px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  &-box {
+    border: @main_border;
+    //border: 5px solid #000000;
+  }
+  &-header {
+    //border-bottom: 5px solid #000000;
+    border-bottom: @main_border;
+    background-color: #ff0d0d;
+    padding: 0.3em;
+    color: #fff;
+  }
+  &-main {
+    padding: 5px;
+    &-content {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      grid-gap: 5px;
+      flex-direction: column;
+
+      a {
+        color: #000;
+        text-decoration: none;
+        &:hover {
+          color: #ff0d0d;
+          //text-decoration: underline;
+        }
+      }
+    }
+  }
+}
